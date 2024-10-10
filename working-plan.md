@@ -2,103 +2,101 @@
 
 ### 1. Réflexion et Analyse
 
-- **Compréhension de l'énoncé et de l'audit** : 
-  - Analyse des exigences et des critères d'évaluation.
-  - Identification des utilisateurs cibles et de leurs besoins.
+- **Compréhension de l'énoncé et de l'audit** :
+  - Analysez attentivement les exigences et les critères d'évaluation pour vous assurer de bien comprendre ce qui est attendu.
+  - Identifiez les utilisateurs cibles et analysez leurs besoins, notamment en matière d'accès aux informations personnelles et de statistiques.
 
-- **Définition des fonctionnalités** : 
-  - **Informations à afficher** : Basic user identification, XP amount, grades, audits, skills.
+- **Définition des fonctionnalités** :
+  - **Informations à afficher** : Identification de base de l'utilisateur, montant d'XP, notes, audits et compétences.
   - **Statistiques graphiques à générer** :
-    - XP earned in a time period (progress over time).
-    - XP earned by project.
-    - Audit ratio.
-    - Projects PASS and FAIL ratio.
-    - Piscine (JS/Go) stats.
-    - PASS and FAIL ratio.
-    - Attempts for each exercise.
+    - XP gagné sur une période donnée (progression dans le temps).
+    - XP gagné par projet.
+    - Ratio des audits (passé/échoué).
+    - Ratio des projets PASS et FAIL.
+    - Statistiques de la piscine (JS/Go).
+    - Tentatives pour chaque exercice.
 
 - **Diagrammes à réaliser** :
-  - **Diagramme de cas d'utilisation** : Montre les interactions entre les utilisateurs et les différentes fonctionnalités de l'application.
+  - **Diagramme de cas d'utilisation** : Montre les interactions entre les utilisateurs et les différentes fonctionnalités de l'application, illustrant les scénarios d'utilisation.
 
 ### 2. Conception
 
-- **Zoning** : 
-  - Crée un schéma simple montrant la structure générale de l'application.
-  - Liste les fonctionnalités clés pour chaque section.
+- **Zoning** :
+  - Créez un schéma simple illustrant la structure générale de l'application, identifiant les sections principales.
+  - Listez les fonctionnalités clés pour chaque section (profil, statistiques, etc.).
 
-- **Maquettes Figma** (ou autre outil de design) : 
-  - Créer des maquettes pour visualiser l'interface utilisateur (UI).
-  - Inclure les sections requises (profil et statistiques).
-  - Penser à la navigation et à l'expérience utilisateur (UX).
+- **Maquettes Figma** :
+  - Concevez des maquettes pour visualiser l'interface utilisateur (UI), en tenant compte des sections requises.
+  - Réfléchissez à la navigation et à l'expérience utilisateur (UX) pour assurer une utilisation fluide.
 
 - **Diagrammes à réaliser** :
-  - **Diagramme de flux de données (DFD)** : Montre comment les données circulent dans l'application.
-  - **Diagramme de composants** : Représente les différents composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
+  - **Diagramme de flux de données (DFD)** : Représente comment les données circulent dans l'application, de l'entrée à la sortie.
+  - **Diagramme de composants** : Montre les différents composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
 
 ### 3. Choix des Outils, Langages et Frameworks
 
 - **Front-end** :
-  - JavaScript avec React.js pour l'interface utilisateur.
-  - Apollo Client pour gérer les requêtes GraphQL.
-  - D3.js pour les graphiques en SVG.
+  - JavaScript avec React.js pour une interface utilisateur réactive.
+  - Apollo Client pour la gestion des requêtes GraphQL.
+  - D3.js pour la création de graphiques en SVG.
 
 - **Back-end** :
-  - Node.js (environnement d'exécution) avec Express.js (framework) pour le serveur.
+  - Node.js avec Express.js pour le serveur.
   - Apollo Server pour créer une API GraphQL.
 
 - **Diagrammes à réaliser** :
-  - **Schéma GraphQL** : Décrit les types, requêtes et mutations de l'API GraphQL.
+  - **Schéma GraphQL** : Détaille les types, requêtes et mutations de l'API GraphQL, facilitant la compréhension de l'architecture des données.
 
 ### 4. Développement
 
 - **Création de la page de connexion** :
-  - Intégrer l'authentification avec JWT.
-  - Gérer les erreurs d'authentification.
+  - Intégrez l'authentification avec JWT pour sécuriser les sessions utilisateur.
+  - Gérez les erreurs d'authentification pour une expérience utilisateur optimale.
 
 - **Implémentation de l'API GraphQL** :
-  - Établir des requêtes pour récupérer les données nécessaires à partir de l'API GraphQL fournie.
+  - Établissez des requêtes pour récupérer les données nécessaires à partir de l'API GraphQL, en veillant à la conformité avec le schéma.
 
 - **Développement de l'interface utilisateur** :
-  - Créer les sections de profil et de statistiques en utilisant les maquettes Figma comme guide.
-  - Utiliser Apollo Client pour gérer les requêtes de données.
+  - Créez les sections de profil et de statistiques en suivant les maquettes Figma.
+  - Utilisez Apollo Client pour récupérer et afficher les données.
 
 - **Intégration des graphiques** :
-  - Utiliser D3.js pour créer les graphiques dans la section des statistiques.
+  - Utilisez D3.js pour générer des graphiques dans la section des statistiques, en vous assurant qu'ils sont interactifs et informatifs.
 
 - **Diagrammes à réaliser** :
-  - **Diagrammes de séquence** : Illustrent l'interaction entre les composants lors de l'exécution des fonctionnalités.
+  - **Diagrammes de séquence** : Illustrent les interactions entre les composants lors de l'exécution des fonctionnalités, facilitant la visualisation des flux logiques.
 
 ### 5. Tests et Validation
 
 - **Vérification des fonctionnalités** :
-  - Tester la connexion, la récupération des données, et l'affichage correct des informations.
+  - Testez la connexion, la récupération des données, et vérifiez que les informations s'affichent correctement dans chaque section.
 
 - **Validation des graphiques** :
-  - S'assurer que les graphiques affichent les données correctement et reflètent les statistiques attendues.
+  - Assurez-vous que les graphiques affichent les données de manière précise et qu'ils correspondent aux statistiques attendues.
 
 ### 6. Hébergement
 
 - **Choix d'une plateforme d'hébergement** :
-  - Utiliser GitHub Pages, Netlify, ou une autre plateforme pour héberger ton projet.
+  - Optez pour GitHub Pages, Netlify, ou une autre plateforme adaptée pour héberger votre projet.
 
-- **Déploiement** : 
-  - Publier ton application en ligne et s'assurer qu'elle est accessible.
+- **Déploiement** :
+  - Publiez votre application en ligne et vérifiez qu'elle est accessible sans problèmes techniques.
 
 ### 7. Finalisation et Documentation
 
-- **Ajout de la fonctionnalité de déconnexion** : 
-  - Implémenter la fonctionnalité pour permettre aux utilisateurs de se déconnecter.
+- **Ajout de la fonctionnalité de déconnexion** :
+  - Implémentez une option permettant aux utilisateurs de se déconnecter de manière sécurisée.
 
-- **Documentation** : 
-  - Rédiger des notes sur le projet, y compris les décisions prises, les fonctionnalités implémentées, et les difficultés rencontrées.
+- **Documentation** :
+  - Rédigez des notes sur le projet, détaillant les décisions prises, les fonctionnalités implémentées, et les défis rencontrés durant le développement.
 
 - **Diagrammes à réaliser** :
-  - **Documentation visuelle** : Inclure des diagrammes de flux et des schémas dans la documentation pour faciliter la compréhension.
+  - **Documentation visuelle** : Intégrez des diagrammes de flux et des schémas dans la documentation pour faciliter la compréhension.
 
 ### 8. Feedback et Améliorations
 
-- **Obtenir des retours** : 
-  - Demander des retours sur le produit final de la part de tes pairs ou mentors.
+- **Obtenir des retours** :
+  - Demandez des retours sur le produit final de la part de vos pairs ou mentors pour identifier les points d'amélioration.
 
-- **Mettre à jour le projet** : 
-  - Apporte des modifications basées sur les commentaires reçus.
+- **Mettre à jour le projet** :
+  - Apportez des modifications basées sur les retours reçus, en visant à améliorer l'expérience utilisateur et la fonctionnalité générale de l'application.
