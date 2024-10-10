@@ -16,22 +16,17 @@
     - Statistiques de la piscine (JS/Go).
     - Tentatives pour chaque exercice.
 
-- **Diagrammes à réaliser** :
-  - **Diagramme de cas d'utilisation** : Montre les interactions entre les utilisateurs et les différentes fonctionnalités de l'application, illustrant les scénarios d'utilisation.
-
 ### 2. Conception
 
-- **Zoning** :
-  - Créez un schéma simple illustrant la structure générale de l'application, identifiant les sections principales.
-  - Listez les fonctionnalités clés pour chaque section (profil, statistiques, etc.).
+- **Diagramme de cas d'utilisation** :
+  - Montre les interactions entre les utilisateurs et les différentes fonctionnalités de l'application.
 
-- **Maquettes Figma** :
-  - Concevez des maquettes pour visualiser l'interface utilisateur (UI), en tenant compte des sections requises.
-  - Réfléchissez à la navigation et à l'expérience utilisateur (UX) pour assurer une utilisation fluide.
+- **Zoning et Wireframes** :
+  - Créez un zoning pour la structure générale de l'application, identifiant les sections principales et les fonctionnalités clés (profil, statistiques, etc.).
+  - Concevez des wireframes simples pour l’interface utilisateur.
 
-- **Diagrammes à réaliser** :
-  - **Diagramme de flux de données (DFD)** : Représente comment les données circulent dans l'application, de l'entrée à la sortie.
-  - **Diagramme de composants** : Montre les différents composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
+- **Diagramme de flux de données (DFD)** :
+  - Représente comment les données circulent dans l'application, de l'entrée à la sortie.
 
 ### 3. Choix des Outils, Langages et Frameworks
 
@@ -44,59 +39,57 @@
   - Node.js avec Express.js pour le serveur.
   - Apollo Server pour créer une API GraphQL.
 
-- **Diagrammes à réaliser** :
-  - **Schéma GraphQL** : Détaille les types, requêtes et mutations de l'API GraphQL, facilitant la compréhension de l'architecture des données.
+- **Diagramme de composants** :
+  - Montre les composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
 
 ### 4. Développement
 
 - **Création de la page de connexion** :
-  - Intégrez l'authentification avec JWT pour sécuriser les sessions utilisateur.
-  - Gérez les erreurs d'authentification pour une expérience utilisateur optimale.
+  - Implémentez l’authentification avec JWT pour sécuriser les sessions utilisateur.
+  - Gérez les erreurs d'authentification pour une meilleure expérience utilisateur.
 
 - **Implémentation de l'API GraphQL** :
-  - Établissez des requêtes pour récupérer les données nécessaires à partir de l'API GraphQL, en veillant à la conformité avec le schéma.
+  - Créez les requêtes et mutations nécessaires pour récupérer et mettre à jour les données utilisateur.
 
 - **Développement de l'interface utilisateur** :
-  - Créez les sections de profil et de statistiques en suivant les maquettes Figma.
-  - Utilisez Apollo Client pour récupérer et afficher les données.
+  - Créez les sections de profil et de statistiques en suivant les wireframes.
+  - Utilisez Apollo Client pour afficher les données.
 
-- **Intégration des graphiques** :
-  - Utilisez D3.js pour générer des graphiques dans la section des statistiques, en vous assurant qu'ils sont interactifs et informatifs.
+- **Intégration des graphiques avec D3.js** :
+  - Créez des graphiques interactifs pour les statistiques dans la section dédiée.
 
-- **Diagrammes à réaliser** :
-  - **Diagrammes de séquence** : Illustrent les interactions entre les composants lors de l'exécution des fonctionnalités, facilitant la visualisation des flux logiques.
+- **Diagramme de séquence** :
+  - Illustre les interactions entre les composants lors de l’exécution des fonctionnalités principales.
 
 ### 5. Tests et Validation
 
 - **Vérification des fonctionnalités** :
-  - Testez la connexion, la récupération des données, et vérifiez que les informations s'affichent correctement dans chaque section.
+  - Testez la connexion, la récupération des données, et assurez-vous que les informations s'affichent correctement.
 
 - **Validation des graphiques** :
-  - Assurez-vous que les graphiques affichent les données de manière précise et qu'ils correspondent aux statistiques attendues.
+  - Vérifiez que les graphiques affichent des données correctes et interprétables.
 
-### 6. Hébergement
+### 6. Hébergement et Déploiement
 
 - **Choix d'une plateforme d'hébergement** :
-  - Optez pour GitHub Pages, Netlify, ou une autre plateforme adaptée pour héberger votre projet.
+  - Utilisez des plateformes comme GitHub Pages, Netlify, ou une autre pour héberger votre projet.
 
 - **Déploiement** :
-  - Publiez votre application en ligne et vérifiez qu'elle est accessible sans problèmes techniques.
+  - Publiez l’application et vérifiez son bon fonctionnement en ligne.
 
 ### 7. Finalisation et Documentation
 
 - **Ajout de la fonctionnalité de déconnexion** :
-  - Implémentez une option permettant aux utilisateurs de se déconnecter de manière sécurisée.
+  - Assurez une déconnexion sécurisée des utilisateurs.
 
-- **Documentation** :
-  - Rédigez des notes sur le projet, détaillant les décisions prises, les fonctionnalités implémentées, et les défis rencontrés durant le développement.
-
-- **Diagrammes à réaliser** :
-  - **Documentation visuelle** : Intégrez des diagrammes de flux et des schémas dans la documentation pour faciliter la compréhension.
+- **Documentation du projet** :
+  - Rédigez des notes détaillées sur le projet (décisions, fonctionnalités, défis rencontrés).
+  - Ajoutez des diagrammes explicatifs (flux de données, composants) dans la documentation.
 
 ### 8. Feedback et Améliorations
 
-- **Obtenir des retours** :
-  - Demandez des retours sur le produit final de la part de vos pairs ou mentors pour identifier les points d'amélioration.
+- **Obtenir des retours utilisateurs** :
+  - Demandez des retours pour identifier les points à améliorer.
 
-- **Mettre à jour le projet** :
-  - Apportez des modifications basées sur les retours reçus, en visant à améliorer l'expérience utilisateur et la fonctionnalité générale de l'application.
+- **Mise à jour du projet** :
+  - Intégrez les retours pour améliorer l'expérience utilisateur et la performance du projet.
