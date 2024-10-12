@@ -41,6 +41,9 @@
 
 - **Diagramme de composants** :
   - Montre les composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
+  
+  - **Diagramme de séquence** :
+  - Illustre les interactions entre les composants lors de l’exécution des fonctionnalités principales.
 
 ### 4. Développement
 
@@ -57,9 +60,6 @@
 
 - **Intégration des graphiques avec D3.js** :
   - Créez des graphiques interactifs pour les statistiques dans la section dédiée.
-
-- **Diagramme de séquence** :
-  - Illustre les interactions entre les composants lors de l’exécution des fonctionnalités principales.
 
 ### 5. Tests et Validation
 
