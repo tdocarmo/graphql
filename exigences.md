@@ -6,9 +6,8 @@
 
 ### 2. Sections du Profil
 - **Sections requises** : Le profil doit comporter trois sections principales :
-  - Identification de l'utilisateur (nom, XP, grades).
-  - Informations sur les audits.
-  - Compétences de l'utilisateur.
+  - Identification de l'utilisateur (nom, XP, grades, compétences).
+  - Informations sur les audits. (en bonus)
   
 - **Section supplémentaire** : Un quatrième segment dédié aux statistiques graphiques est nécessaire.
 
