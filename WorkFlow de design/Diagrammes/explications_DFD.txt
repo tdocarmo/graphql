@@ -1,0 +1,37 @@
+Entités externes :
+
+UTILISATEUR : L'utilisateur interagit avec l'application.
+SERVEUR AUTH : Gère les requêtes d'authentification.
+API GRAPHQL : Fournit les données liées au profil, aux XP et aux audits.
+
+Stockages de données :
+
+Token JWT : Le token JWT est stocké pour gérer l'authentification.
+Cache Local : Un cache local pour stocker les données de l'utilisateur.
+
+Processus :
+
+GESTION AUTH : Gère l'authentification de l'utilisateur.
+GESTION DONNÉES : Gère les données utilisateur.
+GESTION AFFICHAGE : Gère l'affichage du profil et des graphiques.
+Flux des données :
+Authentification de l'utilisateur :
+
+L'utilisateur fournit son login et mot de passe à GESTION AUTH.
+GESTION AUTH envoie les informations d'authentification au SERVEUR AUTH.
+SERVEUR AUTH renvoie un token JWT à GESTION AUTH.
+GESTION AUTH stocke le token JWT dans Token JWT et informe l'utilisateur de son statut de connexion.
+Gestion des données :
+
+Le token JWT est envoyé à GESTION DONNÉES pour vérifier les requêtes.
+GESTION DONNÉES interroge l'API GRAPHQL pour obtenir les données de l'utilisateur (profil, XP, audits).
+API GRAPHQL renvoie les données à GESTION DONNÉES, qui les enregistre dans le Cache Local.
+Affichage du profil :
+
+L'utilisateur demande à voir son profil via GESTION AFFICHAGE.
+Cache Local envoie les données nécessaires à GESTION AFFICHAGE.
+GESTION AFFICHAGE affiche le profil et les graphiques à l'utilisateur.
+Déconnexion :
+
+L'utilisateur demande la déconnexion.
+GESTION AUTH supprime le token JWT dans Token JWT et efface le Cache Local.
