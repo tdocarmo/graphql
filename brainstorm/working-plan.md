@@ -37,7 +37,6 @@
 
 - **Back-end** :
   - Node.js avec Express.js pour le serveur.
-  - Apollo Server pour créer une API GraphQL.
 
 - **Diagramme de composants** :
   - Montre les composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
