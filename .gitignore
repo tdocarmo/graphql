@@ -1,0 +1,18 @@
+# Ignorer node_modules
+node_modules/
+
+# Ignorer les fichiers de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorer les environnements locaux et secrets
+.env
+.env.local
+
+# Ignorer les fichiers système
+.DS_Store
+
+# Ignorer les dossiers de configuration d'éditeurs
+.vscode/
+.idea/
