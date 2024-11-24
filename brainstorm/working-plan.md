@@ -35,9 +35,6 @@
   - Apollo Client pour la gestion des requêtes GraphQL.
   - D3.js pour la création de graphiques en SVG.
 
-- **Back-end** :
-  - Node.js avec Express.js pour le serveur.
-
 - **Diagramme de composants** :
   - Montre les composants de l'application (React, Apollo Client, D3.js, etc.) et leurs interactions.
   
