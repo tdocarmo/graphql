@@ -1,27 +1,24 @@
 {
-    "name": "graphql",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://zone01normandie.org/git/tdocarmo/graphql.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "engines": {
-        "node": ">=16.0.0",
-        "npm": ">=8.0.0"
-    },
-    "dependencies": {
-        "@apollo/client": "^3.11.10",
-        "graphql": "^16.9.0",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "react-router-dom": "^6.28.0"
-    }
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://zone01normandie.org/git/tdocarmo/graphql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.11.10",
+    "d3": "^7.9.0",
+    "graphql": "^16.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.1"
+  }
 }
