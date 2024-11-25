@@ -1,71 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext"; // Contexte d'authentification pour récupérer le token
-import { jwtDecode } from "jwt-decode"; // Importation correcte
-import { GET_USER_PROFILE } from "../../graphql/queries"; // Assurez-vous que la requête est correcte
-import { useQuery } from "@apollo/client"; // Pour exécuter la requête GraphQL
+import { useAuth } from "../../context/AuthContext"; // Contexte d'authentification
+import { jwtDecode } from "jwt-decode"; // Décodage du token JWT
+import { GET_USER_PROFILE } from "../../graphql/queries"; // Requête GraphQL
+import { useQuery } from "@apollo/client"; // Hook GraphQL
 
 const Profile = () => {
-  const { authToken, logout } = useAuth(); // Récupération du token et de la fonction logout du contexte
-  const [profileData, setProfileData] = useState(null); // State pour stocker les données du profil
-  const [error, setError] = useState(null); // State pour gérer les erreurs
-  const [userId, setUserId] = useState(null); // Pour stocker l'ID de l'utilisateur extrait du token
+  const { authToken, logout } = useAuth(); // Récupérer le token et la fonction logout
+  const [error, setError] = useState(null); // Gérer les erreurs
+  const [decodedToken, setDecodedToken] = useState(null); // Contient les informations du token décodé
 
+  // Décoder le token JWT pour récupérer les informations utilisateur
   useEffect(() => {
     if (authToken) {
       try {
-        // Décoder le token pour obtenir l'ID de l'utilisateur
-        const decodedToken = jwtDecode(authToken); // Utilisation de jwtDecode
-        console.log("Decoded Token:", decodedToken); // Afficher le contenu du token décodé
-        
-        setUserId(decodedToken.sub); // Utiliser `sub` pour l'ID de l'utilisateur
-      } catch (error) {
-        console.error("Erreur lors du décodage du token", error);
-        setError("Token invalide ou expiré.");
+        const decoded = jwtDecode(authToken);
+        console.log("Token décodé :", decoded); // Log pour debug
+        setDecodedToken(decoded); // Stocker les données décodées
+      } catch (err) {
+        console.error("Erreur lors du décodage du token :", err);
+        setError("Erreur lors du décodage du token.");
       }
     }
-  }, [authToken]); // Dépendance sur authToken
+  }, [authToken]);
 
-  // Utilisation de la requête GraphQL pour récupérer les données du profil de l'utilisateur
+  // Requête GraphQL pour récupérer les données du profil utilisateur
   const { data, loading, error: queryError } = useQuery(GET_USER_PROFILE, {
-    variables: { userId: userId },
-    skip: !userId, // Ne pas exécuter la requête tant que l'ID utilisateur n'est pas disponible
+    skip: !authToken, // Ne pas exécuter si aucun token n'est présent
   });
 
   useEffect(() => {
-    if (userId) {
-      console.log("User ID:", userId); // Afficher l'ID de l'utilisateur
-    }
-  }, [userId]); // Afficher lorsque `userId` change
-
-  useEffect(() => {
     if (data) {
-      setProfileData(data.user); // Stocker les données du profil dans le state
+      console.log("Données de l'utilisateur :", data); // Vérifiez la réponse
     }
   }, [data]);
 
-  // Si pas de token ou si l'utilisateur n'est pas authentifié
   if (!authToken) {
-    return <div>Vous devez vous connecter pour voir votre profil.</div>;
+    return <div>Vous devez vous connecter pour accéder à votre profil.</div>;
   }
 
-  // Si les données du profil sont en train de se charger
   if (loading) {
-    return <div>Chargement...</div>;
+    return <div>Chargement des données...</div>;
   }
 
-  // Affichage du profil ou message d'erreur
+  if (queryError) {
+    return (
+      <div>
+        Erreur lors de la récupération du profil : {queryError.message}
+      </div>
+    );
+  }
+
+  // Utilisateur extrait de la requête GraphQL
+  const user = data?.user?.[0]; // Accède au premier utilisateur
+
   return (
     <div>
       <h1>Profil</h1>
-      {queryError && <p style={{ color: "red" }}>Erreur lors de la récupération du profil</p>}
-      {profileData ? (
+      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+      {user ? (
         <div>
-          <p>Bienvenue, {profileData.name}</p>
-          <p>Email: {profileData.email}</p>
+          <p>
+            <strong>Bienvenue</strong>, {user.firstName} {user.lastName}
+          </p>
+          <p>
+            <strong>Audit Ratio :</strong> {user.auditRatio}
+          </p>
+          <p>
+            <strong>Total Up :</strong> {user.totalUp}
+          </p>
           <button onClick={logout}>Se déconnecter</button>
         </div>
       ) : (
-        <p>Le profil n'a pas pu être récupéré.</p>
+        <p>Impossible de récupérer votre profil.</p>
       )}
     </div>
   );
