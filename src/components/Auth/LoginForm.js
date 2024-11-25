@@ -38,8 +38,8 @@ const LoginForm = () => {
 
       console.log("Réponse du serveur : ", response);  // Log de la réponse complète du serveur
 
-      if (response.data.token) {
-        login(response.data.token); // Stocke le token dans le contexte
+      if (response.data) {
+        login(response.data); // Stocke le token dans le contexte
         navigate("/profile"); // Redirection vers la page profil
       } else {
         setError("Aucun token reçu, veuillez réessayer.");

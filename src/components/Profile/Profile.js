@@ -13,7 +13,7 @@ const Profile = () => {
         try {
           // Envoi de la requête GraphQL pour récupérer les données du profil
           const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/graphql`, // Utilisation de la variable d'environnement pour l'URL de l'API
+            process.env.REACT_APP_API_URL, // Utilisation de la variable d'environnement pour l'URL de l'API
             {
               query: `
                 query {
