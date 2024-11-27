@@ -1,20 +1,41 @@
-body {
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+header {
+  background-color: #84C3CE;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  height: 40px;
+}
+
+header .user-info {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+header .user-info img {
+  height: 30px;
+  margin-left: 10px;
+}
+
+header .profile-menu {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+button {
+  background-color: #7B6A6A;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+}

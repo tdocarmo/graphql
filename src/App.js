@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';  // Utilisation du contexte d'authentification
 import LoginForm from './components/Auth/LoginForm';
 import Profile from './components/Profile/Profile';
+import Header from './components/Header';  // Importer le composant Header
+import Footer from './components/Footer';  // Importer le composant Footer
 
 function ProtectedRoute({ children }) {
   const { authToken } = useAuth();  // Utilisation de authToken
@@ -16,6 +18,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <Header /> {/* Affichage du header */}
         <Routes>
           <Route path="/" element={<LoginForm />} />  {/* Page de connexion */}
           <Route path="/profile" element={
@@ -24,6 +27,7 @@ function App() {
             </ProtectedRoute>
           } />
         </Routes>
+        <Footer /> {/* Affichage du footer */}
       </Router>
     </AuthProvider>
   );

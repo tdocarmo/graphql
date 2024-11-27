@@ -54,24 +54,26 @@ const Profile = () => {
   const user = data?.user?.[0]; // Accède au premier utilisateur
 
   return (
-    <div>
-      <h1>Profil</h1>
+    <div style={{ padding: "20px", backgroundColor: "#f4f4f4" }}>
+      <h1>Profil Utilisateur</h1>
       {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
       {user ? (
-        <div>
+        <div style={{ backgroundColor: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
           <p>
-            <strong>Bienvenue</strong>, {user.firstName} {user.lastName}
+            <strong>Bienvenue,</strong> {user.firstName} {user.lastName}
           </p>
           <p>
-            <strong>Audit Ratio :</strong> {user.auditRatio}
+            <strong>Audit Ratio :</strong> {user.auditRatio || "Non spécifié"}
           </p>
           <p>
-            <strong>Campus :</strong> {user.campus}
+            <strong>Campus :</strong> {user.campus || "Non spécifié"}
           </p>
           <p>
             <strong>Date de création :</strong> {new Date(user.createdAt).toLocaleDateString()}
           </p>
-          <button onClick={logout}>Se déconnecter</button>
+          <button onClick={logout} style={{ backgroundColor: "#7B6A6A", color: "#fff", padding: "10px 20px", border: "none", cursor: "pointer", borderRadius: "4px" }}>
+            Se déconnecter
+          </button>
         </div>
       ) : (
         <p>Impossible de récupérer votre profil.</p>
