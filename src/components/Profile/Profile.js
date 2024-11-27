@@ -66,7 +66,10 @@ const Profile = () => {
             <strong>Audit Ratio :</strong> {user.auditRatio}
           </p>
           <p>
-            <strong>Total Up :</strong> {user.totalUp}
+            <strong>Campus :</strong> {user.campus}
+          </p>
+          <p>
+            <strong>Date de création :</strong> {new Date(user.createdAt).toLocaleDateString()}
           </p>
           <button onClick={logout}>Se déconnecter</button>
         </div>
