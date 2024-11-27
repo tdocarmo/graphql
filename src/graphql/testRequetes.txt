@@ -1,0 +1,68 @@
+  query{
+            user {
+                id
+                login
+                firstName
+                lastName
+                email
+                campus
+                auditRatio
+                totalUp
+                totalDown
+                xpTotal: transactions_aggregate(where: {type: {_eq: "xp"}}) {
+                  aggregate {
+                    sum {
+                      amount
+                    }
+                  }
+                }
+               
+                finished_projects: groups(where:{group:{status:{_eq:finished}}}) {
+                    group {
+                    path
+                    status
+                  }
+                }
+                current_projects: groups(where:{group:{status:{_eq:working}}}) {
+                    group {
+                    path
+                    status
+                    members {
+                      userLogin
+                    }
+                  }
+                } 
+            }
+        }
+    
+    {
+  user {
+    id
+    login
+    firstName
+    lastName
+    email
+    campus
+    auditRatio
+    totalUp
+    totalDown
+    xpTotal: transactions_aggregate(where: {type: {_eq: "xp"}}) {
+      aggregate {
+        sum {
+          amount
+        }
+      }
+    }
+  }
+  xp_view {
+    user {
+      progresses_aggregate {
+        aggregate {
+          count
+          sum {
+            grade
+          }
+        }
+      }
+    }
+  }

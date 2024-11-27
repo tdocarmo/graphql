@@ -6,7 +6,8 @@ export const GET_USER_PROFILE = gql`
       firstName
       lastName
       auditRatio
-      totalUp
+      campus
+      createdAt
     }
   }
 `;
