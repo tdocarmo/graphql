@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext"; // Contexte d'authentification
+import { useQuery } from "@apollo/client"; // Hook GraphQL
 import { jwtDecode } from "jwt-decode"; // Décodage du token JWT
 import { GET_USER_PROFILE } from "../../graphql/queries"; // Requête GraphQL
-import { useQuery } from "@apollo/client"; // Hook GraphQL
+import logo from "../../assets/logo.png"; // Import logo
 
 const Profile = () => {
   const { authToken, logout } = useAuth(); // Récupérer le token et la fonction logout
-  const [error, setError] = useState(null); // Gérer les erreurs
   const [decodedToken, setDecodedToken] = useState(null); // Contient les informations du token décodé
 
   // Décoder le token JWT pour récupérer les informations utilisateur
@@ -14,11 +14,9 @@ const Profile = () => {
     if (authToken) {
       try {
         const decoded = jwtDecode(authToken);
-        console.log("Token décodé :", decoded); // Log pour debug
         setDecodedToken(decoded); // Stocker les données décodées
       } catch (err) {
         console.error("Erreur lors du décodage du token :", err);
-        setError("Erreur lors du décodage du token.");
       }
     }
   }, [authToken]);
@@ -28,12 +26,7 @@ const Profile = () => {
     skip: !authToken, // Ne pas exécuter si aucun token n'est présent
   });
 
-  useEffect(() => {
-    if (data) {
-      console.log("Données de l'utilisateur :", data); // Vérifiez la réponse
-    }
-  }, [data]);
-
+  // Affichage des données ou messages en cas d'erreur/chargement
   if (!authToken) {
     return <div>Vous devez vous connecter pour accéder à votre profil.</div>;
   }
@@ -43,25 +36,30 @@ const Profile = () => {
   }
 
   if (queryError) {
-    return (
-      <div>
-        Erreur lors de la récupération du profil : {queryError.message}
-      </div>
-    );
+    return <div>Erreur lors de la récupération du profil : {queryError.message}</div>;
   }
 
-  // Utilisateur extrait de la requête GraphQL
-  const user = data?.user?.[0]; // Accède au premier utilisateur
+  // Extraction des données de la requête
+  const user = data?.user?.[0]; // Premier utilisateur (si la requête retourne une liste)
+  const xpTotal = data?.xp?.aggregate?.sum?.amount || 0; // Somme totale des XP
+  const highestLevel = data?.level?.[0]?.amount || "Non défini"; // Plus haut niveau atteint
 
+  // Composant affichant les informations utilisateur
   return (
     <div style={{ padding: "20px", backgroundColor: "#f4f4f4" }}>
-      <h1>Profil Utilisateur</h1>
-      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+      {/* Ajout du texte Bienvenue ici dans le header */}
+      <h1>Bienvenue, {user?.firstName} {user?.lastName}</h1>
+      
       {user ? (
-        <div style={{ backgroundColor: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
-          <p>
-            <strong>Bienvenue,</strong> {user.firstName} {user.lastName}
-          </p>
+        <div
+          style={{
+            backgroundColor: "#fff",
+            padding: "20px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+          }}
+        >
+          {/* Contenu des informations du profil sans la salutation */}
           <p>
             <strong>Audit Ratio :</strong> {user.auditRatio || "Non spécifié"}
           </p>
@@ -69,11 +67,23 @@ const Profile = () => {
             <strong>Campus :</strong> {user.campus || "Non spécifié"}
           </p>
           <p>
-            <strong>Date de création :</strong> {new Date(user.createdAt).toLocaleDateString()}
+            <strong>Date de création :</strong>{" "}
+            {new Date(user.createdAt).toLocaleDateString()}
           </p>
-          <button onClick={logout} style={{ backgroundColor: "#7B6A6A", color: "#fff", padding: "10px 20px", border: "none", cursor: "pointer", borderRadius: "4px" }}>
-            Se déconnecter
-          </button>
+          <p>
+            <strong>Total Up :</strong> {user.totalUp}
+          </p>
+          <p>
+            <strong>Total Down :</strong> {user.totalDown}
+          </p>
+          <hr />
+          <h3>Statistiques :</h3>
+          <p>
+            <strong>XP Total :</strong> {xpTotal}
+          </p>
+          <p>
+            <strong>Niveau Maximal :</strong> {highestLevel}
+          </p>
         </div>
       ) : (
         <p>Impossible de récupérer votre profil.</p>

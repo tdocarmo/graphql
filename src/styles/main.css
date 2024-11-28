@@ -39,3 +39,15 @@ button {
   padding: 8px 15px;
   cursor: pointer;
 }
+.logo {
+  width: 100px;
+  height: auto; /* Garde les proportions */
+  display: block;
+  margin: 0 auto; /* Centre le logo */
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 80px;
+  }
+}
