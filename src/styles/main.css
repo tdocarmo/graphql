@@ -1,5 +1,5 @@
 header {
-  background-color: #84C3CE;
+  background-color: #84c3ce;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -33,7 +33,7 @@ header .profile-menu {
 }
 
 button {
-  background-color: #7B6A6A;
+  background-color: #7b6a6a;
   color: #fff;
   border: none;
   padding: 8px 15px;
@@ -50,4 +50,8 @@ button {
   .logo {
     width: 80px;
   }
+}
+
+body {
+  font-family: "Roboto", sans-serif;
 }
