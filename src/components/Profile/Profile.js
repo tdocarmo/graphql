@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useQuery } from "@apollo/client";
 import { jwtDecode } from "jwt-decode";
 import { GET_USER_PROFILE, GET_LAST_PROJECT } from "../../graphql/queries";
+import StatsGraph from "./StatsGraph";
 
 const Profile = () => {
   const { authToken } = useAuth();
@@ -31,9 +32,7 @@ const Profile = () => {
     data: projectData,
     loading: projectLoading,
     error: projectError,
-  } = useQuery(GET_LAST_PROJECT, {
-    skip: !authToken,
-  });
+  } = useQuery(GET_LAST_PROJECT, { skip: !authToken });
 
   if (!authToken) {
     return <div>Vous devez vous connecter pour accéder à votre profil.</div>;
@@ -55,12 +54,9 @@ const Profile = () => {
   const user = data?.user?.[0];
   const xpTotal = data?.xp?.aggregate?.sum?.amount || 0;
   const highestLevel = data?.level?.[0]?.amount || "Non défini";
-
-  const lastProjects = projectData?.user?.[0]?.xps || [];
-  const formatProjectName = (path) => {
-    const parts = path.split("/");
-    return parts[parts.length - 1];
-  };
+  const auditRatio = user?.auditRatio || 0;
+  const totalDown = user?.totalDown || 0;
+  const totalUp = user?.totalUp || 0;
 
   return (
     <div
@@ -81,20 +77,20 @@ const Profile = () => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          gap: "20px", // L'espace entre les cartes
-          flexWrap: "nowrap", // S'assurer que les cartes restent sur la même ligne
+          gap: "20px",
+          flexWrap: "nowrap",
           padding: "20px",
         }}
       >
-        {/* Première carte : Campus et Début du cursus */}
+        {/* Première carte */}
         <div
           style={{
-            flex: "1 1 32%", // Chaque carte prend 32% de la largeur
+            flex: "1 1 32%",
             backgroundColor: "#eaf7fc",
             padding: "10px",
             borderRadius: "8px",
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            minWidth: "250px", // Limiter la largeur min
+            minWidth: "250px",
           }}
         >
           <p>
@@ -106,22 +102,22 @@ const Profile = () => {
           </p>
         </div>
 
-        {/* Deuxième carte : Derniers projets */}
+        {/* Deuxième carte */}
         <div
           style={{
-            flex: "1 1 32%", // Chaque carte prend 32% de la largeur
+            flex: "1 1 32%",
             backgroundColor: "#eaf7fc",
             padding: "10px",
             borderRadius: "8px",
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            minWidth: "250px", // Limiter la largeur min
+            minWidth: "250px",
           }}
         >
           <h3 style={{ marginBottom: "10px" }}>Mes derniers projets</h3>
           <ul style={{ listStyle: "none", padding: 0 }}>
-            {lastProjects.length > 0 ? (
-              lastProjects.map((project, index) => (
-                <li key={index}>{formatProjectName(project.path)}</li>
+            {projectData?.user?.[0]?.xps?.length > 0 ? (
+              projectData.user[0].xps.map((project, index) => (
+                <li key={index}>{project.path.split("/").pop()}</li>
               ))
             ) : (
               <p>Aucun projet récent trouvé.</p>
@@ -129,23 +125,66 @@ const Profile = () => {
           </ul>
         </div>
 
-        {/* Troisième carte : XP Total et Level */}
+        {/* Troisième carte */}
         <div
           style={{
-            flex: "1 1 32%", // Chaque carte prend 32% de la largeur
+            flex: "1 1 32%",
             backgroundColor: "#eaf7fc",
             padding: "10px",
             borderRadius: "8px",
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            minWidth: "250px", // Limiter la largeur min
+            minWidth: "250px",
           }}
         >
           <p>
             <strong>XP Total :</strong> {xpTotal}
           </p>
           <p>
-            <strong>Level :</strong> {highestLevel}
+            <strong>Niveau :</strong> {highestLevel}
           </p>
+          <p>
+            <strong>Ratio Audit :</strong>{" "}
+            {auditRatio ? `${auditRatio.toFixed(2)} %` : "Non calculé"}
+          </p>
+        </div>
+      </div>
+
+      {/* Conteneur des graphiques */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "20px",
+          gap: "20px",
+        }}
+      >
+        {/* Premier graphique */}
+        <StatsGraph totalUp={totalUp} totalDown={totalDown} />
+
+        {/* Placeholder pour les deux autres graphiques */}
+        <div
+          style={{
+            flex: "1",
+            backgroundColor: "#eaf7fc",
+            padding: "10px",
+            borderRadius: "8px",
+            textAlign: "center",
+            minWidth: "250px",
+          }}
+        >
+          Graphique 2 (à implémenter)
+        </div>
+        <div
+          style={{
+            flex: "1",
+            backgroundColor: "#eaf7fc",
+            padding: "10px",
+            borderRadius: "8px",
+            textAlign: "center",
+            minWidth: "250px",
+          }}
+        >
+          Graphique 3 (à implémenter)
         </div>
       </div>
     </div>
