@@ -16,6 +16,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   // Initialisation de l'état authToken à partir du localStorage ou valeur initiale
   const [authToken, setAuthToken] = useState(localStorage.getItem("tokenAuth"));
+  console.log(authToken);  // Affiche le token JWT
 
   // Fonction pour vérifier si le token est expiré
   const isTokenExpired = useCallback((token) => {
