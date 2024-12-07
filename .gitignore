@@ -1,18 +1,60 @@
-# Ignorer node_modules
+# Ignore les modules node
 node_modules/
 
-# Ignorer les fichiers de logs
+# Ignore les fichiers de logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Ignorer les environnements locaux et secrets
+# Ignore les fichiers d'environnement locaux
 .env
 .env.local
 
-# Ignorer les fichiers système
+# Ignore les fichiers de système
 .DS_Store
+Thumbs.db
 
-# Ignorer les dossiers de configuration d'éditeurs
+# Ignore les fichiers de configuration d'éditeurs
 .vscode/
 .idea/
+
+# Ignore les fichiers de cache d'éditeur et de build
+*.sublime-workspace
+*.sublime-project
+
+# Ignore les fichiers temporaires de build
+build/
+dist/
+tmp/
+
+# Ignore les fichiers générés par Webpack ou autres bundlers
+*.map
+*.bundle.js
+*.bundle.js.map
+
+# Ignore les fichiers de test
+coverage/
+*.lcov
+
+# Ignore les fichiers de dépendances et les fichiers de configuration de dépendances
+package-lock.json
+yarn.lock
+
+# Ignore les fichiers générés par Docker
+.docker/
+docker-compose.override.yml
+
+# Ignore les fichiers de cache des IDE comme JetBrains
+*.iml
+.idea/
+
+# Ignore les fichiers générés par les tests de lint
+eslint.log
+
+# Ignore les fichiers spécifiques aux systèmes de CI/CD
+*.swp
+*.swo
+
+# Ignore les fichiers temporaires ou cachés
+*.bak
+*.tmp
