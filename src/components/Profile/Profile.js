@@ -9,6 +9,8 @@ import SkillCircleGraph from "./SkillCircleGraph";
 const Profile = () => {
   const { authToken } = useAuth();
   const [decodedToken, setDecodedToken] = useState(null);
+;
+  
 
   useEffect(() => {
     if (authToken) {
@@ -27,6 +29,7 @@ const Profile = () => {
     error: queryError,
   } = useQuery(GET_USER_PROFILE, {
     skip: !authToken,
+    variables : {id : decodedToken?.sub}
   });
 
   const {

@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const GET_USER_PROFILE = gql`
-  query ProfilData {
+  query ProfilData($id : Int!) {
     xp: transaction_aggregate(
       where: {
-        userId: { _eq: 3314 }
+        userId: { _eq: $id }
         type: { _eq: "xp" }
         eventId: { _eq: 216 }
       }
@@ -19,7 +19,7 @@ export const GET_USER_PROFILE = gql`
       limit: 1
       order_by: { amount: desc }
       where: {
-        userId: { _eq: 3314 }
+        userId: { _eq: $id }
         type: { _eq: "level" }
         eventId: { _eq: 216 }
       }
